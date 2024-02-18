@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const myHeaders = new Headers();
+myHeaders.append("Authorization", "App 129cfa11c5ada82d9ac79c9fed0d51fb-4ea2fc30-4a86-40b4-9e2a-55de29aff2cf");
+myHeaders.append("Content-Type", "application/json");
+myHeaders.append("Accept", "application/json");
+
+const raw = JSON.stringify({
+    "messages": [
+        {
+            "destinations": [{"to":"7385906233"}],
+            "from": "ServiceSMS",
+            "text": "Hello,\n\nThis is a test message from Infobip. Have a nice day!"
+        }
+    ]
+});
+
+const requestOptions = {
+    method: "POST",
+    headers: myHeaders,
+    body: raw,
+    redirect: "follow"
+};
+
+fetch("https://w1k138.api.infobip.com/sms/2/text/advanced", requestOptions)
+    .then((response) => response.text())
+    .then((result) => console.log(result))
+    .catch((error) => console.error(error)); 
+    </script>
+</body>
+</html>
